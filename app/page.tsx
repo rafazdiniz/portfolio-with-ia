@@ -21,15 +21,17 @@ export default async function Portfolio() {
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="container mx-auto px-4 py-8">
-        <NavigationBar className="mb-12 gap-6" />
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Main Page */}
+        <main className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Sticky Profile Card Column */}
           <div className="lg:col-span-3 lg:sticky lg:top-8 lg:self-start">
             <ProfileCard />
           </div>
 
           {/* Main Content Column */}
-          <div className="lg:col-span-9">
+          <div className="relative lg:col-span-9">
+            {/* Navigation */}
+            <NavigationBar className="py-2 container bg-black sticky left-0 top-0 z-50 mb-12 gap-6" />
             <div className="space-y-20">
               <HeroSection />
               <RecentProjects projects={projects} />
@@ -39,7 +41,7 @@ export default async function Portfolio() {
               <ContactForm />
             </div>
           </div>
-        </div>
+        </main>
       </div>
       <footer className="py-4 text-center text-xs text-gray-500">
         <p>Made by Rafael Diniz • Powered by Next.js</p>
