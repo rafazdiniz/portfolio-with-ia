@@ -3,10 +3,11 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { ChevronRight } from "lucide-react"
 import Link from "next/link"
-import { getProjects, fallbackProjects, type Project } from "@/lib/airtable"
+import { getProjects, fallbackProjects, type Project, getCertify, Certify } from "@/lib/airtable"
 import { RecentProjects } from "@/components/pages/RecentProjects"
 import { ProfileCard } from "@/components/profile-card"
 import { NavigationBar } from "@/components/navigation-bar"
+import { ExperienceSection } from "@/components/Sections/Experience"
 
 export default async function Portfolio() {
   // Fetch projects from Airtable with error handling
@@ -16,6 +17,13 @@ export default async function Portfolio() {
   } catch (error) {
     console.error("Error in Portfolio component:", error)
     projects = fallbackProjects
+  }
+  let certify: Certify[] = []
+  try {
+    certify = await getCertify()
+  } catch (error) {
+    console.error("Error in Portfolio component:", error)
+    certify = fallbackProjects
   }
 
   return (
@@ -35,7 +43,7 @@ export default async function Portfolio() {
             <div className="space-y-20">
               <HeroSection />
               <RecentProjects projects={projects} />
-              <Experience />
+              <ExperienceSection certify={certify} />
               <Tools />
               <DesignThoughts />
               <ContactForm />
@@ -110,54 +118,7 @@ function SkillCard({ title, color, icon, url }: { title: string; color: string; 
 
 
 
-function Experience() {
-  return (
-    <section id="experience">
-      <h2 className="text-4xl font-bold">CERTIFICADOS</h2>
-      <h3 className="text-4xl font-bold text-gray-700 mb-8">CONQUISTAS</h3>
 
-      <div className="space-y-4">
-        <ExperienceCard
-          company="PixelForge Studios"
-          role="Lead UX/UI Designer & Front-end Developer"
-          description="Led design and front-end development for multiple high-profile clients, focusing on responsive design and user experience."
-          period="Jan 2020 - Present"
-        />
-        <ExperienceCard
-          company="BlueWave Innovators"
-          role="Senior UI/UX Designer & Front-end Developer"
-          description="Created and implemented design strategies for enterprise-level applications, focusing on accessibility and user engagement."
-          period="July 2015 - Dec 2019"
-        />
-        <ExperienceCard
-          company="TrendCraft Solutions"
-          role="UI/UX Designer & Front-end Developer"
-          description="Designed and developed responsive websites and applications for clients across various industries."
-          period="May 2010 - May 2015"
-        />
-      </div>
-    </section>
-  )
-}
-
-function ExperienceCard({
-  company,
-  role,
-  description,
-  period,
-}: { company: string; role: string; description: string; period: string }) {
-  return (
-    <div className="flex items-center justify-between p-4 border border-gray-800 rounded-lg hover:bg-gray-900 transition-colors">
-      <div>
-        <h4 className="text-xl font-bold">{company}</h4>
-        <p className="text-gray-400">{role}</p>
-        <p className="text-gray-500 text-sm mt-2">{description}</p>
-        <p className="text-gray-600 text-xs mt-2">{period}</p>
-      </div>
-      <ChevronRight className="text-gray-500" />
-    </div>
-  )
-}
 
 function Tools() {
 

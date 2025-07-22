@@ -25,10 +25,19 @@ interface Project {
   image: string
   tags: string[]
 }
+interface Certify {
+  id: string
+  title: string
+  description: string
+  image: string
+}
 
 const fallbackProjects: Project[] = []
+const fallbackCertify: Certify[] = []
+
 
 const BASE_ID = process.env.AIRTABLE_BASE_ID || ""
+const BASE_ID_CERTIFY = process.env.BASE_ID_CERTIFY || ""
 const TABLE_NAME = process.env.AIRTABLE_TABLE_NAME || ""
 
 const airtable = new Airtable({
@@ -111,5 +120,46 @@ export async function getProjectById(id: string): Promise<Project | null> {
     return fallbackProject || null
   }
 }
+// 
 
-export { fallbackProjects, type Project }
+export async function getCertify(): Promise<Certify[]> {
+  // Check if required environment variables are set
+  if (!process.env.AIRTABLE_KEY) {
+    console.warn("AIRTABLE_KEY environment variable is not set")
+    return fallbackCertify
+  }
+
+  try {
+    // Validate BASE_ID
+    if (!BASE_ID_CERTIFY) {
+      console.warn("Airtable BASE_ID is not configured properly")
+      return fallbackCertify
+    }
+
+    const base = airtable.base(BASE_ID_CERTIFY)
+    const records = await base("certification").select({sort:[{field:'created_at',direction:'desc'}]}).all()
+
+    if (!records || records.length === 0) {
+      console.warn("No records found in Airtable")
+      return fallbackProjects
+    }
+
+    return records.map((record) => {
+      const fields = record.fields
+      const imageUrl = (fields.image as any) as ImageProject[]
+
+      return {
+        id: record.id,
+        title: (fields.title as string) || "Untitled Project",
+        description: (fields.description as string) || "No description",
+        // Ensure we never return an empty string for image
+        image: imageUrl?.[0].thumbnails.large.url || '',
+      }
+    })
+  } catch (error) {
+    console.error("Error fetching projects from Airtable:", error)
+    return fallbackProjects
+  }
+}
+
+export { fallbackProjects, type Project, type Certify }
