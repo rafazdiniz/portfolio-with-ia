@@ -1,15 +1,11 @@
 'use client'
 import { Project } from "@/lib/airtable"
-import { useEffect } from "react"
 import { ProjectCard } from "./ProjectCard"
 
 export function RecentProjects({ projects }: { projects: Project[] }) {
   // Use the first 3 projects
   const displayProjects = projects.slice(0, 3)
 
-  useEffect(() => {
-    console.log(projects);
-  }, [projects])
 
   return (
     <section id="projects">

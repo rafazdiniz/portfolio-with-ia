@@ -30,6 +30,7 @@ interface Certify {
   title: string
   description: string
   image: string
+  created_at?: string
 }
 
 const fallbackProjects: Project[] = []
@@ -37,9 +38,8 @@ const fallbackCertify: Certify[] = []
 
 
 const BASE_ID = process.env.AIRTABLE_BASE_ID || ""
-const BASE_ID_CERTIFY = process.env.BASE_ID_CERTIFY || ""
-const TABLE_NAME = process.env.AIRTABLE_TABLE_NAME || ""
-
+const TABLE_NAME = process.env.AIRTABLE_TABLE_PROJECTS || ""
+const AIRTABLE_TABLE_CERTIFY = process.env.AIRTABLE_TABLE_CERTIFY || ""
 const airtable = new Airtable({
   apiKey: process.env.AIRTABLE_KEY,
 })
@@ -131,35 +131,38 @@ export async function getCertify(): Promise<Certify[]> {
 
   try {
     // Validate BASE_ID
-    if (!BASE_ID_CERTIFY) {
+    if (!BASE_ID) {
       console.warn("Airtable BASE_ID is not configured properly")
       return fallbackCertify
     }
 
-    const base = airtable.base(BASE_ID_CERTIFY)
-    const records = await base("certification").select({sort:[{field:'created_at',direction:'desc'}]}).all()
+    const base = airtable.base(BASE_ID)
+    const records = await base(
+      AIRTABLE_TABLE_CERTIFY
+    ).select({sort:[{field:'created_at',direction:'desc'}]}).all()
 
     if (!records || records.length === 0) {
       console.warn("No records found in Airtable")
-      return fallbackProjects
+      return fallbackCertify
     }
 
     return records.map((record) => {
       const fields = record.fields
       const imageUrl = (fields.image as any) as ImageProject[]
-
+      
       return {
         id: record.id,
         title: (fields.title as string) || "Untitled Project",
         description: (fields.description as string) || "No description",
         // Ensure we never return an empty string for image
         image: imageUrl?.[0].thumbnails.large.url || '',
+        created_at: fields.created_at as string | undefined
       }
     })
   } catch (error) {
     console.error("Error fetching projects from Airtable:", error)
-    return fallbackProjects
+    return fallbackCertify
   }
 }
 
-export { fallbackProjects, type Project, type Certify }
+export { fallbackProjects,fallbackCertify, type Project, type Certify }

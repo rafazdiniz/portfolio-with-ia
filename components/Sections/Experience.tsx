@@ -2,7 +2,7 @@
 
 import { Certify } from "@/lib/airtable";
 import { ChevronRight } from "lucide-react";
-import { useEffect } from "react";
+import Image from "next/image";
 
 interface ExperienceSectionProps {
   certify: Certify[]
@@ -15,10 +15,6 @@ export function ExperienceSection({
   // State *****************************************************************
 
   // Effect ****************************************************************
-  useEffect(() => {
-    console.log(certify);
-
-  }, [certify])
 
   // Function **************************************************************
 
@@ -35,12 +31,14 @@ function Experience({ certify }: { certify: Certify[] }) {
       <div className="space-y-4">
 
         {
-          certify?.map(x => (
+          certify?.map((x) => (
             <ExperienceCard
-              company="PixelForge Studios"
-              role="Lead UX/UI Designer & Front-end Developer"
-              description="Led design and front-end development for multiple high-profile clients, focusing on responsive design and user experience."
-              period="Jan 2020 - Present"
+              key={x.id}
+              company={x.title}
+              img={x.image}
+              role={""}
+              description={x.description}
+              period={new Date(x?.created_at!).toLocaleDateString('pt-BR', { dateStyle: 'medium' })}
             />
           ))
         }
@@ -52,17 +50,27 @@ function Experience({ certify }: { certify: Certify[] }) {
 
 function ExperienceCard({
   company,
+  img,
   role,
   description,
   period,
-}: { company: string; role: string; description: string; period: string }) {
+}: { img?: string, company: string; role: string; description: string; period?: string }) {
   return (
     <a href="/experience/" className="flex items-center justify-between p-4 border border-gray-800 rounded-lg hover:bg-gray-900 transition-colors">
-      <div>
-        <h4 className="text-xl font-bold">{company}</h4>
-        <p className="text-gray-400">{role}</p>
-        <p className="text-gray-500 text-sm mt-2">{description}</p>
-        <p className="text-gray-600 text-xs mt-2">{period}</p>
+      <div className="flex gap-4 items-center">
+        <Image
+          src={img || ''}
+          width={500}
+          height={500}
+          alt=""
+          className="w-20 h-20 rounded-md"
+        />
+        <div>
+          <h4 className="text-xl font-bold">{company}</h4>
+          <p className="text-gray-400">{role}</p>
+          <p className="text-gray-500 text-sm mt-2">{description}</p>
+          <p className="text-gray-600 text-xs mt-2">{period}</p>
+        </div>
       </div>
       <ChevronRight className="text-gray-500" />
     </a>

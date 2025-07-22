@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { ChevronRight } from "lucide-react"
 import Link from "next/link"
-import { getProjects, fallbackProjects, type Project, getCertify, Certify } from "@/lib/airtable"
+import { getProjects, fallbackProjects, fallbackCertify, type Project, getCertify, Certify } from "@/lib/airtable"
 import { RecentProjects } from "@/components/pages/RecentProjects"
 import { ProfileCard } from "@/components/profile-card"
 import { NavigationBar } from "@/components/navigation-bar"
@@ -23,7 +23,7 @@ export default async function Portfolio() {
     certify = await getCertify()
   } catch (error) {
     console.error("Error in Portfolio component:", error)
-    certify = fallbackProjects
+    certify = fallbackCertify
   }
 
   return (
@@ -45,7 +45,7 @@ export default async function Portfolio() {
               <RecentProjects projects={projects} />
               <ExperienceSection certify={certify} />
               <Tools />
-              <DesignThoughts />
+              {/* <DesignThoughts /> */}
               <ContactForm />
             </div>
           </div>
@@ -59,10 +59,10 @@ export default async function Portfolio() {
 }
 
 
-
+// Hero *****************************************************************
 function HeroSection() {
   return (
-    <section>
+    <section id="home">
       <h1 className="text-5xl font-bold">SOFTWARE</h1>
       <h2 className="text-5xl font-bold text-gray-700">ENGINEER</h2>
       <p className="text-gray-400 mt-2 max-w-2xl">
@@ -70,19 +70,19 @@ function HeroSection() {
         beautifully crafted products.
       </p>
 
-      <div className="grid grid-cols-3 gap-4 mt-8">
-        <StatCard number="+12" label="YEARS EXPERIENCE" />
-        <StatCard number="+46" label="PROJECTS COMPLETED" />
-        <StatCard number="+20" label="CONTRIBUTIONS" />
-      </div>
+      {/* <div className="grid grid-cols-3 gap-4 mt-8">
+        <StatCard number="+5" label="ANOS DE EXPERIÊNCIA" />
+        <StatCard number="+12" label="PROJECTS" />
+        <StatCard number="+3" label="CONTRIBUIÇÕES" />
+      </div> */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-        <SkillCard title="DYNAMIC INTERACTIONS & MOTION DESIGN" color="bg-amber-700" icon="square" />
+        <SkillCard title="CURSANDO FACULDADE DE REDES DE COMPUTADORES - ANHEMBI MORUMBI" color="bg-amber-700" icon="square" />
         <SkillCard
           title="MAIS PROJETOS..."
           color="bg-yellow-800"
           icon="square"
-          url="/skills/design-tools"
+          url="/projects/more"
         />
       </div>
     </section>
@@ -115,15 +115,8 @@ function SkillCard({ title, color, icon, url }: { title: string; color: string; 
   return content
 }
 
-
-
-
-
-
+// Tools *****************************************************************
 function Tools() {
-
-
-
   return (
     <section id="tools">
       <h2 className="text-4xl font-bold">FERRAMENTAS</h2>
@@ -173,36 +166,38 @@ function BlogCard({ title, excerpt, date, slug }: { title: string; excerpt: stri
   )
 }
 
-function DesignThoughts() {
-  return (
-    <section>
-      <h2 className="text-4xl font-bold">DESIGN</h2>
-      <h3 className="text-4xl font-bold text-gray-700 mb-8">THOUGHTS</h3>
+// Blog *****************************************************************
+// function DesignThoughts() {
+//   return (
+//     <section>
+//       <h2 className="text-4xl font-bold">DESIGN</h2>
+//       <h3 className="text-4xl font-bold text-gray-700 mb-8">THOUGHTS</h3>
 
-      <div className="space-y-4">
-        <BlogCard
-          title="Starting and Growing a Career in Web Design"
-          excerpt="As a beginner just starting to develop your skills, it's important to focus on the fundamentals. Learn HTML, CSS, and JavaScript thoroughly from reliable sources. Practice daily, even if it's just small projects."
-          date="Feb 8, 2023"
-          slug="starting-and-growing-a-career-in-web-design"
-        />
-        <BlogCard
-          title="Create a Landing Page That Performs Great"
-          excerpt="Whether you want to create a landing page, or product design, you'll need to approach the experience of building from ground up. Design is not just how it looks, it's also about how they help increase your conversion."
-          date="May 18, 2023"
-          slug="create-a-landing-page-that-performs-great"
-        />
-        <BlogCard
-          title="How Can Designers Prepare for the Future?"
-          excerpt="Whether you want to create a landing page, or product design, you'll need to approach the experience of building from ground up. Design is not just how it looks, it's also about how they help increase your conversion."
-          date="July 30, 2023"
-          slug="how-can-designers-prepare-for-the-future"
-        />
-      </div>
-    </section>
-  )
-}
+//       <div className="space-y-4">
+//         <BlogCard
+//           title="Starting and Growing a Career in Web Design"
+//           excerpt="As a beginner just starting to develop your skills, it's important to focus on the fundamentals. Learn HTML, CSS, and JavaScript thoroughly from reliable sources. Practice daily, even if it's just small projects."
+//           date="Feb 8, 2023"
+//           slug="starting-and-growing-a-career-in-web-design"
+//         />
+//         <BlogCard
+//           title="Create a Landing Page That Performs Great"
+//           excerpt="Whether you want to create a landing page, or product design, you'll need to approach the experience of building from ground up. Design is not just how it looks, it's also about how they help increase your conversion."
+//           date="May 18, 2023"
+//           slug="create-a-landing-page-that-performs-great"
+//         />
+//         <BlogCard
+//           title="How Can Designers Prepare for the Future?"
+//           excerpt="Whether you want to create a landing page, or product design, you'll need to approach the experience of building from ground up. Design is not just how it looks, it's also about how they help increase your conversion."
+//           date="July 30, 2023"
+//           slug="how-can-designers-prepare-for-the-future"
+//         />
+//       </div>
+//     </section>
+//   )
+// }
 
+// Contact *****************************************************************
 function ContactForm() {
   return (
     <section id="contact">

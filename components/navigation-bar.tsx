@@ -7,7 +7,7 @@ import { HTMLAttributes } from "react"
 const nav = [
   {
     name: 'home',
-    path: '/',
+    path: '/#home',
     icon: () => <HomeIcon />
   }, {
     name: 'projects',
