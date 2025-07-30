@@ -3,21 +3,11 @@ import { Card } from "@/components/ui/card"
 
 export function ProfileCard() {
   return (
-    <Card className="bg-white text-black overflow-hidden">
-      <div className="relative h-48 bg-amber-700">
-        <Image
-          src={'/code.jpg'}
-          alt="Profile background"
-          width={384}
-          height={192}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-amber-700"></div>
-      </div>
-      <div className="p-4 relative">
-        <div className="absolute -top-[100px] left-1/2 -translate-x-1/2 w-[150px] h-[150px] rounded-3xl overflow-hidden border-4 border-white">
+    <Card className="bg-transparent text-black overflow-hidden !border-none">
+      <div className="p-4 relative w-full flex flex-col items-center justify-center">
+        <div className=" w-[150px] h-[150px] rounded-3xl overflow-hidden">
           <Image
-            src={'/eu.webp'}
+            src={'/eu.jpg'}
             alt="Rafael Diniz"
             width={64}
             height={64}
@@ -25,8 +15,8 @@ export function ProfileCard() {
           />
         </div>
         <div className="mt-10 text-center">
-          <h2 className="text-xl font-bold">Rafael Diniz</h2>
-          <p className="text-sm text-gray-600 mt-1">
+          <h2 className="text-xl font-bold text-neutral-100">Rafael Diniz</h2>
+          <p className="text-sm text-neutral-200 mt-1">
             A Software Engineer who has a strong passion for creating innovative solutions.
           </p>
           <div className="flex justify-center gap-2 mt-4">

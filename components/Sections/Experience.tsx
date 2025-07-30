@@ -34,6 +34,7 @@ function Experience({ certify }: { certify: Certify[] }) {
           certify?.map((x) => (
             <ExperienceCard
               key={x.id}
+              id={x.id}
               company={x.title}
               img={x.image}
               role={""}
@@ -49,14 +50,15 @@ function Experience({ certify }: { certify: Certify[] }) {
 }
 
 function ExperienceCard({
+  id,
   company,
   img,
   role,
   description,
   period,
-}: { img?: string, company: string; role: string; description: string; period?: string }) {
+}: { id: string, img?: string, company: string; role: string; description: string; period?: string }) {
   return (
-    <a href="/experience/" className="flex items-center justify-between p-4 border border-gray-800 rounded-lg hover:bg-gray-900 transition-colors">
+    <a href={`/experience/${id}`} className="flex items-center justify-between p-4 border border-gray-800 rounded-lg hover:bg-gray-900 transition-colors">
       <div className="flex gap-4 items-center">
         <Image
           src={img || ''}

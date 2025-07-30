@@ -22,6 +22,11 @@ export function RecentProjects({ projects }: { projects: Project[] }) {
             url={project.url}
           />
         ))}
+        <div className="">
+          <a
+            className="text-2xl text-amber-500"
+            href="/projects/more">mais projetos...</a>
+        </div>
       </div>
     </section>
   )

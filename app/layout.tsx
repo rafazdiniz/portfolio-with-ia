@@ -26,8 +26,11 @@ export default function RootLayout({
 
   // if (!inter) return <></>
   return (
-    <html lang="en" >
-      <body suppressHydrationWarning className={`${inter.variable} antialiased`}>
+    <html lang="pt-BR" >
+      <body
+        suppressHydrationWarning
+        className={`${inter.variable} antialiased`}
+      >
         <Providers>
           {children}
         </Providers>
