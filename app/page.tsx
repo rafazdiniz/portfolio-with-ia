@@ -73,8 +73,7 @@ function HeroSection() {
       <h1 className="text-5xl font-bold">SOFTWARE</h1>
       <h2 className="text-5xl font-bold text-gray-700">ENGINEER</h2>
       <p className="text-gray-400 mt-2 max-w-2xl">
-        Passionate about creating intuitive and engaging user experiences. Specializes in transforming ideas into
-        beautifully crafted products.
+        Apaixonado por criar experiências intuitivas e envolventes para o usuário. Especialista em transformar ideias em produtos primorosamente elaborados.
       </p>
 
       <div className="grid grid-cols-3 gap-4 mt-8">

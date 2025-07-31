@@ -25,7 +25,7 @@ export function ContactFormComponent({
 
     <form
       className="space-y-4"
-      action="https://formsubmit.co/araujodiniz1994@gmail.com"
+      action={`https://formsubmit.co/${process.env.EMAIL}`}
       method="POST"
     >
       <div>
@@ -53,7 +53,7 @@ export function ContactFormBudgetComponent() {
 
     <form
       className="space-y-6"
-      action="https://formsubmit.co/araujodiniz1994@gmail.com"
+      action={`https://formsubmit.co/${process.env.EMAIL}`}
       method="POST"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

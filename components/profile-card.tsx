@@ -17,7 +17,7 @@ export function ProfileCard() {
         <div className="mt-10 text-center">
           <h2 className="text-xl font-bold text-neutral-100">Rafael Diniz</h2>
           <p className="text-sm text-neutral-200 mt-1">
-            A Software Engineer who has a strong passion for creating innovative solutions.
+            Um engenheiro de software com grande paixão por criar soluções inovadoras.
           </p>
           <div className="flex justify-center gap-2 mt-4">
             {/* <SocialIcon icon="github" />
