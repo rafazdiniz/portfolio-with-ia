@@ -9,6 +9,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  env:{
+    EMAIL:process.env.EMAIL
+  }
 }
 
 export default nextConfig
