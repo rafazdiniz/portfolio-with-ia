@@ -1,6 +1,4 @@
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { ChevronRight } from "lucide-react"
 import Link from "next/link"
 import { getProjects, fallbackProjects, fallbackStack, fallbackCertify, type Stack, type Project, getCertify, Certify, getStack } from "@/lib/airtable"
@@ -9,6 +7,7 @@ import { ProfileCard } from "@/components/profile-card"
 import { NavigationBar } from "@/components/navigation-bar"
 import { ExperienceSection } from "@/components/Sections/Experience"
 import Image from "next/image"
+import { ContactFormComponent } from "@/components/Sections/ContactFormComponent"
 
 export default async function Portfolio() {
   // Fetch projects from Airtable with error handling
@@ -214,24 +213,7 @@ function BlogCard({ title, excerpt, date, slug }: { title: string; excerpt: stri
 function ContactForm() {
   return (
     <section id="contact">
-      <h2 className="text-4xl font-bold">LET'S WORK</h2>
-      <h3 className="text-4xl font-bold text-gray-700 mb-8">TOGETHER</h3>
-
-      <form className="space-y-4">
-        <div>
-          <Input type="text" placeholder="Name" className="bg-gray-900 border-gray-800 text-white" />
-        </div>
-        <div>
-          <Input type="email" placeholder="Email" className="bg-gray-900 border-gray-800 text-white" />
-        </div>
-        <div>
-          <Input type="text" placeholder="Subject" className="bg-gray-900 border-gray-800 text-white" />
-        </div>
-        <div>
-          <Textarea placeholder="Message" className="bg-gray-900 border-gray-800 text-white min-h-32" />
-        </div>
-        <Button className="w-full bg-amber-700 hover:bg-amber-600 text-white">Submit</Button>
-      </form>
+      <ContactFormComponent />
     </section>
   )
 }

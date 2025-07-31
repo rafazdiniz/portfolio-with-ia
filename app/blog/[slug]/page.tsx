@@ -1,10 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { ChevronLeft } from "lucide-react"
 import { ProfileCard } from "@/components/profile-card"
+import { ContactFormComponent } from "@/components/Sections/ContactFormComponent"
 
 // This would typically come from a CMS or database
 const blogPosts = [
@@ -108,24 +106,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             <div className="prose prose-invert max-w-none mb-16" dangerouslySetInnerHTML={{ __html: post.content }} />
 
             <section className="mt-20">
-              <h2 className="text-4xl font-bold">LET'S WORK</h2>
-              <h3 className="text-4xl font-bold text-gray-700 mb-8">TOGETHER</h3>
-
-              <form className="space-y-4">
-                <div>
-                  <Input type="text" placeholder="Name" className="bg-gray-900 border-gray-800 text-white" />
-                </div>
-                <div>
-                  <Input type="email" placeholder="Email" className="bg-gray-900 border-gray-800 text-white" />
-                </div>
-                <div>
-                  <Input type="text" placeholder="Subject" className="bg-gray-900 border-gray-800 text-white" />
-                </div>
-                <div>
-                  <Textarea placeholder="Message" className="bg-gray-900 border-gray-800 text-white min-h-32" />
-                </div>
-                <Button className="w-full bg-amber-700 hover:bg-amber-600 text-white">Submit</Button>
-              </form>
+              <ContactFormComponent />
             </section>
           </div>
         </div>
