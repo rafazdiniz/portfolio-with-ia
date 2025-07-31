@@ -5,6 +5,10 @@ import { Input } from "../ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 import { Textarea } from "../ui/textarea"
 
+const EMAIL = process.env.EMAIL
+
+if (!EMAIL) Error('Coloque o email no arquivo Env!')
+
 interface ContactFormComponentProps {
 
 }
