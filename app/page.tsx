@@ -85,7 +85,7 @@ function HeroSection() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 ">
         <SkillCard title="CURSANDO FACULDADE DE REDES DE COMPUTADORES - ANHEMBI MORUMBI" color="bg-amber-700" icon="square" />
         <SkillCard
-          title="Programador freelancer há mais de 5 anos criando sistemas compltos com hospedagem"
+          title="Programador freelancer há mais de 5 anos criando sistemas completos com hospedagem"
           color="bg-yellow-800"
           icon="square"
         // url=""
