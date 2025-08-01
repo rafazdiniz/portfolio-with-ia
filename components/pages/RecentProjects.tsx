@@ -20,6 +20,7 @@ export function RecentProjects({ projects }: { projects: Project[] }) {
             description={project.description}
             image={project.image}
             url={project.url}
+            tags={project.tags}
           />
         ))}
         <div className="">
